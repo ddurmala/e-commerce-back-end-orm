@@ -26,23 +26,23 @@ router.get('/:tag_id', async (req, res) => {
   res.json(tag);
 });
 
-//!this doesn't work!! insomnia
+
 router.post('/', async (req, res) => {
   // create a new tag
-  const formData = request.body;
+  const formData = req.body;
 
   const tag = await Tag.create(formData);
 
   res.json({
-    message: 'new tag created.'
+    message: 'new tag created.',
+    tag
   });
 });
 
-// ! this doesnt work insomnia !!
 router.put('/:tag_id', async (req, res) => {
   // update a tag's name by its `id` value
   const tag = await Tag.update(
-    request.body, {
+    req.body, {
     where: {
       id: req.params.tag_id
     }
